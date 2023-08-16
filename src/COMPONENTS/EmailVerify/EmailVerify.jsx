@@ -4,6 +4,7 @@ import axios from "axios";
 import success from "../images/success.png";
 import styles from "./styles.module.css";
 // import { Fragment } from "react/cjs/react.production.min";
+import { getVerifyUser } from "../../API/SERVICES/auth";
 
 const EmailVerify = () => {
 	const [validUrl, setValidUrl] = useState(false);
@@ -12,8 +13,8 @@ const EmailVerify = () => {
 	useEffect(() => {
         const verifyEmailUrl = async () => {
             try {
-				const url = `http://localhost:4000/api/users/${params.id}/verify/${params.token}`;
-				const { data } = await axios.get(url);
+				// const url = `http://localhost:4000/api/users/${params.id}/verify/${params.token}`;
+				const { data } = await getVerifyUser(params.id,params.token);
                 console.log(data);
 				console.log("emailverifyurl "+data);
 				setValidUrl(true);

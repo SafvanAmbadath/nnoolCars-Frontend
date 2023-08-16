@@ -1,24 +1,28 @@
 import React, { useState } from "react";
 import Navbar from "../COMPONENTS/Navbar";
-// import { userAxios } from "../axiosLink/axios";
-// import { message } from "antd";
-import axios from "axios";
+import { postLogin, postRegister, postGoogleAuthentication } from "../API/SERVICES/auth";
+
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.modules.css";
 import { LoginSocialGoogle } from "reactjs-social-login";
 import { GoogleLoginButton } from "react-social-login-buttons";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../REDUX-TOOLKIT/SLICE/userReducer";
+import { message } from "antd";
 
 function Login() {
     const [displayregister, setDisplayRegister] = useState(false);
     const [displaylogin, setDisplayLogin] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const [data, setdata] = useState("");
     const [logindata, setLoginData] = useState({ email: "", password: "" });
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [error, setError] = useState("");
     const [msg, setMsg] = useState("");
-
 
     const signUpHandle = (e) => {
         setdata({ ...data, [e.target.name]: e.target.value });
@@ -28,77 +32,46 @@ function Login() {
         setLoginData({ ...logindata, [e.target.name]: e.target.value });
     };
 
-    // console.log(data);
-
-    // const submitLogin = async () => {
-    //     if (logindata.email && logindata.password) {
-    //         const res = await userAxios({
-    //             url: "/login",
-    //             method: "post",
-    //             data: logindata,
-    //         });
-    //         // console.log(res, "login");
-
-    //         if (res.status === 201) {
-    //             navigate("/home");
-    //         } else {
-    //             const msg = res.data.msg;
-    //             message.error(msg);
-    //         }
-    //     } else {
-    //         message.error("fill columns");
-    //     }
-    // };
     const submitLogin = async (e) => {
         try {
-            const url = "http://localhost:4000/api/auth";
-            const { data: res } = await axios.post(url, logindata);
-            localStorage.setItem("token", res.data);
-            window.location = "/home";
-        } catch (error) {
-            if (error.response && error.response.status >= 400 && error.response.status <= 500) {
-                setError(error.response.data.message);
+            console.log("login");
+
+            const res = await postLogin(logindata);
+            console.log(res);
+            if (res.response && res.response.status >= 400 && res.response.status <= 500) {
+                setError(res.response.data.message);
+                message.error(res.response.data.message)
+            }else{
+                dispatch(
+                    setLogin({
+                        user: "user",
+                        id: res.data.user._id,
+                        name: res.data.user.firstName,
+                        token: res.data.data,
+                        email: res.data.user.email,
+                    })
+                );
+                // localStorage.setItem("token", res.data);
+    
+                setIsLoggedIn(true);
+                navigate("/");
+
             }
+
+            
+        } catch (error) {
+            
+            console.log("not login"+error);
+            
         }
     };
 
-    // const submitSignup =async ()=>{
-
-    //   if(data.password && data.firstName && data.lastName && data.email && data.phoneNumber && data.password && data.dob){
-    //       if(data.password === data.confirmPassword){
-
-    //           const res  = await userAxios({
-    //                 url:'/signup',
-    //                 method:'post',
-    //                 data:data
-
-    //           })
-    //           // console.log(res,'lllllllllll');
-    //           if(res.status === 201){
-    //               navigate('/home')
-    //           }else{
-    //               setmsg(res.data.msg)
-    //           }
-
-    //       }else{
-    //           message.error('Password incorrect')
-
-    //       }
-    // console.log(msg);
-
-    //   }else{
-    //     message.error('fill columns')
-
-    // }
-
-    // }
     const submitSignup = async (e) => {
         try {
             console.log("signup");
-            const url = "http://localhost:4000/api/users";
-            const { data: res } = await axios.post(url, data);
-            // navigate("/login");
-            // console.log(res.message);
+    
+            const { data: res } = await postRegister(data);
+          
             setMsg(res.message);
         } catch (error) {
             if (error.response && error.response.status >= 400 && error.response.status <= 500) {
@@ -107,48 +80,56 @@ function Login() {
         }
     };
 
-    const emailverify = async(data)=>{
+    const emailverify = async (data) => {
         try {
-            console.log("google login");
-            console.log(data);
-            const url="http://localhost:4000/api/users/googleAuthentication"
-            // console.log(url);
-            const res = await axios.post(url,data)
-            console.log(res);
+            const res = await postGoogleAuthentication(data);
+            // console.log(res);
             if (res.status === 200) {
-                console.log("status true");
-            localStorage.setItem("token", res.data.token);
-            window.location="/home"
+                const result = res.data;
+                dispatch(
+                    setLogin({
+                        user: "user",
+                        id: result.id,
+                        name: result.name,
+                        token: result.token,
+                        email: result.email,
+                    })
+                );
+                setIsLoggedIn(true);
 
-            //   const result = res.data;
-            //   dispatch(
-            //     setLogin({
-            //       ...oldDate,
-            //       user: "user",
-            //       id: result.id,
-            //       name: result.name,
-            //       token: result.token,
-            //       email: result.email,
-            //       number: result.number,
-            //     })
-            //   );
-            //   if (oldDate.location && oldDate.endDate) {
-            //     navigate("/home");
-            //   } else if (oldDate.location) {
-            //     navigate("/place");
-            //   } else {
-            //     navigate("/");
-            //   }
-            // } else {
+                navigate("/");
+                // const details = {
+                //     user: "user",
+                //     id: result.id,
+                //     name: result.name,
+                //     token: result.token,
+                //     email: result.email,
+                //     number: result.number,
+                // };
+
+                // Object.entries(details).forEach(([key, value]) => {
+                //     localStorage.setItem(key, value);
+                // });
+                // localStorage.setItem("token", res.data.token);
+
+                //   const result = res.data;
+
+                //   if (oldDate.location && oldDate.endDate) {
+                //     navigate("/home");
+                //   } else if (oldDate.location) {
+                //     navigate("/place");
+                //   } else {
+                //     navigate("/");
+                //   }
+                // } else {
             }
-          } catch {}
-        
-    }
+        } catch {}
+    };
 
     return (
         <div className="w-screen h-screen bg-LandingImage">
-            <Navbar />
-            <div className="w-full text-center items-center flex justify-center">
+            <Navbar isLoggedIn={isLoggedIn} />
+            <div className="w-screen text-center items-center flex justify-center">
                 <div className="bg-white rounded-lg mt-10 h-[500px] w-[470px] items-center p-7  ">
                     {error && <div className={styles.error_msg}>{error}</div>}
                     {msg && <div className={styles.success_msg}>{msg}</div>}
@@ -200,9 +181,22 @@ function Login() {
                             </div>
                             <div className="flex w-full justify-between mt-8">
                                 <div>
-                                    <h1 className="font-bold">Remember password?</h1>
+                                    <div className="flex items-center">
+                                        <input
+                                            type="checkbox"
+                                            id="rememberPassword"
+                                            className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                                        />
+                                        <label
+                                            htmlFor="rememberPassword"
+                                            className="ml-2 block text-sm font-bold leading-5 text-gray-900"
+                                        >
+                                            Remember password?
+                                        </label>
+                                    </div>
+                                    {/* <h1 className="font-bold">Remember password?</h1> */}
                                 </div>
-                                <h1 className="">Forgot password?</h1>
+                                {/* <h1 className="">Forgot password?</h1> */}
                             </div>
                             <div>
                                 <div className="">
