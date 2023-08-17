@@ -5,7 +5,7 @@ import { BiChevronsLeft } from "react-icons/bi";
 import { BsArrowRightShort } from "react-icons/bs";
 import { AiFillFilter } from "react-icons/ai";
 import img from "../COMPONENTS/images/success.png";
-import img1 from "../COMPONENTS/images/landingbg.jpeg";
+// import img1 from "../COMPONENTS/images/landingbg.jpeg";
 import { useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";

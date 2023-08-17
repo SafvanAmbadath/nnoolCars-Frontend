@@ -23,7 +23,7 @@ module.exports = {
 
         extend: {
             backgroundImage: {
-                LandingImage: "url('./COMPONENTS/images/landingbg.jpeg')",
+                LandingImage: "url('./COMPONENTS/images/landingbg.jpg')",
                 Landingimage: "url('./COMPONENTS/images/first-banner.jpg')",
                 logo: "url('./COMPONENTS/images/logo.png')",
 
