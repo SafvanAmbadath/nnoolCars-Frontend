@@ -7,7 +7,7 @@ import io from "socket.io-client";
 import { message } from "antd";
 
 
-let socket = io.connect("http://localhost:4000");
+let socket = io.connect("https://nnoolcars.onrender.com");
 
 function Message({ date, name, chatdata, senderId, token, setChatData }) {
   const [msg, setMsg] = useState("");
