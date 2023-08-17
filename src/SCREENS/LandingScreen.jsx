@@ -56,7 +56,7 @@ function LandingScreen() {
                 setSutable(res.data.cars);
                 setState(true);
             } else {
-                setMessage(res.data.message);
+                // setMessage(res.data.message);
             }
         });
     }, [ city, ]);

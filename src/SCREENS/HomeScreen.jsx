@@ -36,7 +36,7 @@ function HomeScreen({ city }) {
                 setloader(false);
                 setCar(res.data.car);
             } else {
-                setMessage(res.date.message);
+                // setMessage(res.date.message);
             }
         });
     }, [reset]);
