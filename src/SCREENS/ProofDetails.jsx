@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { message } from "antd";
-
+import { useSelector } from "react-redux";
 import RentNavbar from "../COMPONENTS/RentNavbar";
 import { PickerOverlay } from "filestack-react";
 import CarDetailsForm from "../COMPONENTS/Modal/CardetailsForm";
@@ -35,8 +35,9 @@ function ProofDetails() {
 
     const filestackClientID = process.env.REACT_APP_FILESTACK_API_KEY;
 
-    const number = localStorage.getItem("number");
-    const email = localStorage.getItem("email");
+    // const number = localStorage.getItem("number");
+    // const email = localStorage.getItem("email");
+    const { number, email } = useSelector((state) => state.userSlice);
 
     const handleChange = (event) => {
         setSlider(event.target.value);

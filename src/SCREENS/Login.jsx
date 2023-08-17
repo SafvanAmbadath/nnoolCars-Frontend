@@ -49,6 +49,7 @@ function Login() {
                         name: res.data.user.firstName,
                         token: res.data.data,
                         email: res.data.user.email,
+                        number:res.data.user.phoneNumber
                     })
                 );
                 // localStorage.setItem("token", res.data);

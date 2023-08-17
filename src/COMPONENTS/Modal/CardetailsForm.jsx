@@ -1,9 +1,6 @@
 import React, { useState, useRef } from "react";
 import { PickerOverlay } from "filestack-react";
-
-
 import { State, City } from "country-state-city";
-
 import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { postRentCar } from "../../API/SERVICES/hostVerify";
@@ -19,12 +16,12 @@ function CarDetailsForm({ open, children, onclose, setopen, imageRC, imageIC, ca
     const [noOwner, setNoOwner] = useState("");
     const [transmission, setTransmission] = useState("");
     const [state, setState] = useState("");
-    const [brand,setBrand]=useState("")
+    const [brand, setBrand] = useState("");
     const [city, setCity] = useState("");
     const hostFormRef = useRef();
     const navigate = useNavigate();
 
-      const { token, id } = useSelector((state) => state.userSlice);
+    const { token, id } = useSelector((state) => state.userSlice);
     // const token = localStorage.getItem("token");
     // const id = localStorage.getItem("id");
 
@@ -32,10 +29,10 @@ function CarDetailsForm({ open, children, onclose, setopen, imageRC, imageIC, ca
         e.preventDefault();
         setState(e.target.value);
     };
-    const brandHandle=(e)=>{
-        e.preventDefault()
-        setBrand(e.target.value)
-    }
+    const brandHandle = (e) => {
+        e.preventDefault();
+        setBrand(e.target.value);
+    };
     const cityHandle = (e) => {
         e.preventDefault();
         setCity(e.target.value);
@@ -59,17 +56,17 @@ function CarDetailsForm({ open, children, onclose, setopen, imageRC, imageIC, ca
         e.preventDefault();
         setList(false);
     };
-    const brands=[
-        {name:"Maruti"},
-        {name:"Tata"},
-        {name:"Toyota"},
-        {name:"BMW"},
-        {name:"Hyundai"},
-        {name:"Mahindra"},
-        {name:"Mercedes"},
-        {name:"Audi"},
-        {name:"Honda"},
-    ]
+    const brands = [
+        { name: "Maruti" },
+        { name: "Tata" },
+        { name: "Toyota" },
+        { name: "BMW" },
+        { name: "Hyundai" },
+        { name: "Mahindra" },
+        { name: "Mercedes" },
+        { name: "Audi" },
+        { name: "Honda" },
+    ];
     const carRegister = async (e) => {
         e.preventDefault();
         const year = hostFormRef.current.year.value;
