@@ -69,7 +69,7 @@ function Login() {
                                 Password
                             </label>
                             <input
-                                type="text"
+                                type="password"
                                 name="password"
                                 onChange={handleChange}
                                 className="w-full border-2 pl-2 border-gray-400 h-11 mt-1 rounded-xl"
