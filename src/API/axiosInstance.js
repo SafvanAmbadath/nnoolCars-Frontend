@@ -4,8 +4,8 @@ import { setLogin } from "../REDUX-TOOLKIT/SLICE/userReducer";
 
 //userAxios
 export const userAxios = axios.create({
-    baseURL: "http://localhost:4000/users/",
-    // baseURL: "https://nnoolcars.onrender.com/users/",
+    // baseURL: "http://localhost:4000/users/",
+    baseURL: "https://nnoolcars.onrender.com/users/",
     headers: {
         "Content-Type": "application/json",
     },
@@ -54,8 +54,8 @@ userAxios.interceptors.response.use(
 
 //adminAxios
 export const adminAxios = axios.create({
-    baseURL: "http://localhost:4000/admin/",
-    // baseURL: "https://nnoolcars.onrender.com/admin/",
+    // baseURL: "http://localhost:4000/admin/",
+    baseURL: "https://nnoolcars.onrender.com/admin/",
     headers: {
         "Content-Type": "application/json",
     },
@@ -78,8 +78,8 @@ adminAxios.interceptors.request.use(
 
 //authAxios
 export const authAxios = axios.create({
-    baseURL: "http://localhost:4000/auth/",
-    // baseURL: "https://nnoolcars.onrender.com/auth/",
+    // baseURL: "http://localhost:4000/auth/",
+    baseURL: "https://nnoolcars.onrender.com/auth/",
     headers: {
         "Content-Type": "application/json",
     },
