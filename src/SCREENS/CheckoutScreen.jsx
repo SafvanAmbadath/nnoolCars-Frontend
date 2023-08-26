@@ -4,6 +4,7 @@ import GooglePayButton from "@google-pay/button-react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { message } from "antd";
 
 import Navbar from "../COMPONENTS/Navbar"
 import scan from "../COMPONENTS/images/download.png"

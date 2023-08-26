@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { postRentCar } from "../../API/SERVICES/hostVerify";
 import { useSelector } from "react-redux";
+import { message } from "antd";
 
 function CarDetailsForm({ open, children, onclose, setopen, imageRC, imageIC, carNumber, km, email }) {
     // const car = carNames.all
