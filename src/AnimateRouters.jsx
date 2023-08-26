@@ -3,8 +3,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import ProtectAdminRouter from "./UTILITIES/ProtectAdminRoutes";
 import ProtectUserRouter from "./UTILITIES/ProtectUserRoutes";
-import ProtectAuthentication from "./UTILITIES/ProtectAuthentication";
-import ProtectLanding from "./UTILITIES/ProtectLanding";
 
 import Landing from "./SCREENS/LandingScreen";
 import Login from "./SCREENS/Login";
@@ -37,15 +35,9 @@ function AnimateRouters() {
     return (
         <AnimatePresence>
             <Routes location={location} key={location.pathname}>
-
-            
-
                 <Route exact path="/" element={<Landing />} />
-               
 
-                {/* <Route element={<ProtectAuthentication />}> */}
-                    <Route path="/login" element={<Login />} />
-                {/* </Route> */}
+                <Route path="/login" element={<Login />} />
 
                 <Route path="/home" element={<HomeScreen />} />
                 <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
