@@ -49,6 +49,7 @@ function CheckoutScreen() {
    
 
     if (res.status === 202) {
+      message.success("Car booked successfully")
       navigate("/verifyOrder");
     } else {
       setMessage(res.data.message);

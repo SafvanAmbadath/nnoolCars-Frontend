@@ -119,6 +119,7 @@ function CarDetailsForm({ open, children, onclose, setopen, imageRC, imageIC, ca
             console.log(res);
 
             if (res.status === 201) {
+                message.success("Car posted,Admin will review")
                 navigate("/hostVerify");
             }
         } else {

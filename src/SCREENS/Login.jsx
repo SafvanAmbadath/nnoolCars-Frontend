@@ -55,6 +55,7 @@ function Login() {
                 // localStorage.setItem("token", res.data);
     
                 setIsLoggedIn(true);
+                message.success("Loggedin successfully")
                 navigate("/");
 
             }
@@ -97,6 +98,7 @@ function Login() {
                     })
                 );
                 setIsLoggedIn(true);
+                message.success("Loggedin successfully")
 
                 navigate("/");
                 // const details = {
