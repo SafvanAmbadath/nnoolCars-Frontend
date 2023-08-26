@@ -72,9 +72,9 @@ function HomeScreen({ city }) {
             <Navbar />
 
             {open && (
-                <div className="md:visible invisible  md:static absolute w-28 h-12 bg-yellow-500 mt-5 flex justify-between">
-                    <h1 className="text-gray-200 text-2xl m-1">Filter</h1>
-                    <BiChevronsLeft className="text-white text-4xl m-1 " onClick={() => setOpen(false)} />
+                <div className="md:visible invisible  md:static absolute w-28 h-12 bg-black mt-5 flex justify-between">
+                    <h1 className="text-yellow-500 text-2xl m-1">Filter</h1>
+                    <BiChevronsLeft className="text-yellow-500 text-4xl m-1 " onClick={() => setOpen(false)} />
                 </div>
             )}
             <div className="w-full h-full flex bg-gray-200">
@@ -82,9 +82,9 @@ function HomeScreen({ city }) {
                     ""
                 ) : (
                     <div className="invisible md:static absolute  md:visible md: h-[700px] w-500  bg-white mt-5 ">
-                        <div className="h-16 bg-yellow-500 rounded-tr-xl flex justify-between ">
-                            <h1 className="text-white text-2xl m-3">Filter</h1>
-                            <BiChevronsLeft className="text-white text-4xl m-3 " onClick={() => setOpen(true)} />
+                        <div className="h-16 bg-black rounded-tr-xl flex justify-between ">
+                            <h1 className="text-yellow-500 text-2xl m-3">Filter</h1>
+                            <BiChevronsLeft className="text-yellow-500 text-4xl m-3 " onClick={() => setOpen(true)} />
                         </div>
                         <div className="mt-3">
                             <div className="flex justify-between">
@@ -99,13 +99,13 @@ function HomeScreen({ city }) {
                             <h1 className="text-xl ml-2">Price</h1>
                             <div className=" border-gray-300 w-full mt-3 ml-2  rounded-lg h-28 flex flex-wrap gap-y-0  ">
                                 <div
-                                    className="w-2/5 h-3/5 border-2 border-yellow-300 flex flex-col justify-center items-center z-40 cursor-pointer"
+                                    className="w-2/5 h-3/5 border-2 rounded-full  bg-black text-yellow-400  flex flex-col justify-center items-center z-40 cursor-pointer"
                                     onClick={() => filterHighToLow("LowtoHigh")}
                                 >
                                     <h1>Low to High</h1>
                                 </div>
                                 <div
-                                    className="w-2/5 h-3/5 border-2 border-yellow-300  ml-4 flex flex-col justify-center items-center z-40 cursor-pointer"
+                                    className="w-2/5 h-3/5 border-2 rounded-full  bg-black text-yellow-400  ml-4 flex flex-col justify-center items-center z-40 cursor-pointer"
                                     onClick={() => filterHighToLow("HightoLow")}
                                 >
                                     <h1>High to Low</h1>
@@ -114,11 +114,11 @@ function HomeScreen({ city }) {
                         </div>
                         <hr />
 
-                        <div className="ml-3">
+                        {/* <div className="ml-3">
                             <div className="flex ">
                                 <h1 className="text-xl">Seats</h1>
                             </div>
-                        </div>
+                        </div> */}
                         {/* <div className=' border-gray-300 w-full  rounded-lg h-24 flex flex-wrap gap-y-0 p-3 '>
                         <div className='w-1/4 h-4/5 border-2 p-3 items-center'>
                              <h1 className='pt-1'>5 seats</h1>
@@ -144,13 +144,13 @@ function HomeScreen({ city }) {
                         </div>
                         <div className=" border-gray-300 w-full mt-3 ml-2  rounded-lg h-28 flex flex-wrap gap-y-0  ">
                             <div
-                                className="w-2/5 h-3/5 border-2 border-yellow-300  flex flex-col justify-center items-center z-40 cursor-pointer"
+                                className="w-2/5 h-3/5 border-2 rounded-full bg-black text-yellow-400  flex flex-col justify-center items-center z-40 cursor-pointer"
                                 onClick={() => FilterTransmission("Automatic")}
                             >
                                 <h1>Automatic</h1>
                             </div>
                             <div
-                                className="w-2/5 h-3/5 border-2 border-yellow-300  ml-4 flex flex-col justify-center items-center z-40 cursor-pointer"
+                                className="w-2/5 h-3/5 border-2 rounded-full bg-black text-yellow-400  ml-4 flex flex-col justify-center items-center z-40 cursor-pointer"
                                 onClick={() => FilterTransmission("Manual")}
                             >
                                 <h1>Manual</h1>
@@ -165,13 +165,13 @@ function HomeScreen({ city }) {
 
                         <div className=" border-gray-300 w-full mt-3 ml-2  rounded-lg h-28 flex flex-wrap gap-y-0  ">
                             <div
-                                className="w-2/5 h-3/5 border-2 border-yellow-300  flex flex-col justify-center items-center z-40 cursor-pointer"
+                                className="w-2/5 h-3/5 border-2 rounded-full  bg-black text-yellow-400  flex flex-col justify-center items-center z-40 cursor-pointer"
                                 onClick={() => findFilter("Diesel")}
                             >
                                 <h1>Diesel</h1>
                             </div>
                             <div
-                                className="w-2/5 h-3/5 border-2 border-yellow-300  ml-4 flex flex-col justify-center items-center z-40 cursor-pointer"
+                                className="w-2/5 h-3/5 border-2 rounded-full  bg-black text-yellow-400  ml-4 flex flex-col justify-center items-center z-40 cursor-pointer shadow-md"
                                 onClick={() => findFilter("Petrol")}
                             >
                                 <h1>Petrol</h1>
@@ -190,10 +190,10 @@ function HomeScreen({ city }) {
                 )}
 
                 <div className="w-full flex flex-col h-screen scrollbar-hide overflow-scroll ">
-                    <div className="w-full h-28 flex  mt-2 justify-center md:static absolute">
+                    <div className="w-full h-28 flex  mt-2 justify-center md:static absolute ">
                         <div className="w-5/12 h-24 m-2 ml-5  md:static absolute invisible md:visible">
                             <div
-                                className="rounded-xl border-2 border-yellow-300 h-16 flex pt-1"
+                                className="rounded-3xl border-2 shadow-md h-16 flex pt-1 bg-black"
                                 // onClick={() =>
                                 //   navigate("/findPlace", {
                                 //     // state: { date: date, location: location },
@@ -203,7 +203,7 @@ function HomeScreen({ city }) {
                                 <div className="rounded-full h-6 w-6 bg-green-200 m-3 mt-3 ">
                                     <div className="rounded-full h-3 w-3 bg-yellow-300  relative top-1.5 left-1.5"></div>
                                 </div>
-                                <h1 className="text-black m-3">
+                                <h1 className="text-yellow-500 m-3">
                                     {location} . {city}
                                 </h1>
                             </div>
@@ -212,17 +212,17 @@ function HomeScreen({ city }) {
                             className="w-5/12 h-20 m-2 invisible md:visible md:static absolute "
                             //   onClick={() => navigate("/finddate", { state: { date, time } })}
                         >
-                            <div className="rounded-xl border-2 p-2 border-yellow-300 h-16 flex justify-between">
+                            <div className="rounded-3xl bg-black border-2 p-2 h-16 flex justify-between">
                                 <div>
-                                    <h1 className="font-semibold">{moment(date).format("DD MMM, YYYY")}</h1>
-                                    <h1>{moment(date).format("h:mm A")}</h1>
+                                    <h1 className="font-semibold text-white">{moment(date).format("DD MMM, YYYY")}</h1>
+                                    <h1 className="text-yellow-400">{moment(date).format("h:mm A")}</h1>
                                 </div>
 
-                                <BsArrowRightShort className="text-3xl m-2" />
+                                <BsArrowRightShort className="text-3xl text-yellow-400 m-2" />
 
                                 <div>
-                                    <h1 className="text-right ">{moment(endDate).format("DD MMM, YYYY")}</h1>
-                                    <h1 className="text-end">{moment(endDate).format("h:mm A")}</h1>
+                                    <h1 className="text-right text-white ">{moment(endDate).format("DD MMM, YYYY")}</h1>
+                                    <h1 className="text-end text-yellow-400">{moment(endDate).format("h:mm A")}</h1>
                                 </div>
                             </div>
                         </div>
@@ -313,9 +313,10 @@ function HomeScreen({ city }) {
                                 </div>
                             </div>
                         ))}
-
+<div className="flex flex-wrap">
                         {car.map((data, index) => (
-                            <div className="w-90  h-96 ml-3 bg-white  rounded-xl border-2 border-gray-300  ">
+                             <div key={index} className="w-2/6 p-3">
+                            <div className=" ml-2 h-96 bg-white  rounded-xl border-2 border-gray-300  ">
                                 <div className="h-52 ">
                                     <img
                                         src={data.imageCar[0].filesUploaded[0].url}
@@ -324,9 +325,9 @@ function HomeScreen({ city }) {
                                     ></img>
                                     <div className="flex ">
                                         <div className=" relative w-9/12 h-8 bg-white rounded-tr-3xl -top-8"></div>
-                                        <div className="rounded-full h-14 w-14 relative -top-8 left-2 bg-yellow-500">
+                                        <div className="rounded-full h-14 w-14 relative -top-8 left-2 bg-yellow-400 hover:bg-yellow-800 transition-shadow duration-300">
                                             <GrChapterNext
-                                                className="text-white font-bold m-4 text-2xl"
+                                                className="text-yellow-400 font-bold m-4 text-2xl hover:text-yellow-400"
                                                 key={index}
                                                 onClick={() => navigate(`/carDetails/${data._id}`)}
                                             />
@@ -353,7 +354,9 @@ function HomeScreen({ city }) {
                                     </div>
                                 </div>
                             </div>
+                            </div>
                         ))}
+                    </div>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ export const updateCancelOrder = async (startDate, orderId, amount) => {
     try {
         const response = await userAxios({
             url: "/cancelOrder",
-            method: "POST",
+            method: "PATCH",
             data: {
                 startDate,
                 orderId,

@@ -14,7 +14,7 @@ export const uploadprofile = async ( userId, drivingLicense, identitycard) => {
     try {
         const response = await userAxios({
             url: "/postProfile",
-            method: "POST",
+            method: "PATCH",
             data: {
                 userId,
                 drivingLicense,

@@ -3,6 +3,8 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import ProtectAdminRouter from "./UTILITIES/ProtectAdminRoutes";
 import ProtectUserRouter from "./UTILITIES/ProtectUserRoutes";
+import ProtectAuthentication from "./UTILITIES/ProtectAuthentication";
+import ProtectLanding from "./UTILITIES/ProtectLanding";
 
 import Landing from "./SCREENS/LandingScreen";
 import Login from "./SCREENS/Login";
@@ -35,8 +37,16 @@ function AnimateRouters() {
     return (
         <AnimatePresence>
             <Routes location={location} key={location.pathname}>
+
+            
+
                 <Route exact path="/" element={<Landing />} />
-                <Route path="/login" element={<Login />} />
+               
+
+                {/* <Route element={<ProtectAuthentication />}> */}
+                    <Route path="/login" element={<Login />} />
+                {/* </Route> */}
+
                 <Route path="/home" element={<HomeScreen />} />
                 <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
                 <Route path="/carDetails/:carData" element={<CarDetailsScreen />}></Route>
@@ -55,7 +65,6 @@ function AnimateRouters() {
                     <Route path="/expandCheckout/:orderId" element={<ExpandCheckout />}></Route>
                     <Route path="/hostUserCarList" element={<HostCarListScreen />}></Route>
                     <Route path="/chat/:reciverId" element={<ChatScreen />}></Route>
-
                 </Route>
 
                 <Route path="/admin" element={<AdminLogin />} />

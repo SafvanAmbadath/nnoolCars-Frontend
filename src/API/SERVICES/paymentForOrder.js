@@ -36,7 +36,7 @@ export const paymentComplete = async (orderId) => {
     try {
         const response = await adminAxios({
             url: "/updatePaymentStatus",
-            method: "POST",
+            method: "PATCH",
 
             data: { orderId },
         });

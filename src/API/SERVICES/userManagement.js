@@ -12,7 +12,7 @@ export const getUsersList = async () => {
 export const postBlockUser = async (id) => {
     try {
         const response =await adminAxios({
-            method: "POST",
+            method: "PATCH",
             url: `blockUser/${id}`, 
         });
         return response;
@@ -22,7 +22,7 @@ export const postBlockUser = async (id) => {
 export const postUnblockUser = async (id) => {
     try {
         const response =await adminAxios({
-            method: "POST",
+            method: "PATCH",
             url: `unblockUser/${id}`, 
         });
         return response;

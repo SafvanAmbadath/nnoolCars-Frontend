@@ -15,7 +15,7 @@ export const expandTime = async (data) => {
     try {
         const response = await userAxios({
             url: "/updateExpandDate",
-            method: "POST",
+            method: "PATCH",
             data,
         });
 

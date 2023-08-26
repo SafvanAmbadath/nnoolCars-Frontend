@@ -4,7 +4,7 @@ export const postAccountDetails = async (userId,accountNumber, branch, ifscCode,
     try {
         const response = await userAxios({
             url: "/postAccountDetails?",
-            method: "POST",
+            method: "PATCH",
 
             data: {
                 userId,
@@ -62,7 +62,7 @@ export const getPendingHostCars = async () => {
 export const getHostApprove = async (id) => {
     try {
         const response = await adminAxios({
-            method: "get",
+            method: "PATCH",
             url: `/approve?id=${id}`,
         });
         return response;
@@ -72,7 +72,7 @@ export const getHostApprove = async (id) => {
 export const getHostDeny = async (id) => {
     try {
         const response = await adminAxios({
-            method: "get",
+            method: "PATCH",
             url: `/denied?id=${id}`,
         });
         return response;
@@ -93,7 +93,7 @@ export const UpdateCompleteOrder = async (orderId) => {
     try {
         const response = await userAxios({
             url: "/setCompleteOrder",
-            method: "POST",
+            method: "PATCH",
             data: { orderId },
         });
 

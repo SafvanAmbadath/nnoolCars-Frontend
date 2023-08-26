@@ -42,7 +42,7 @@ export const getLocations = async () => {
 export const getDeleteLocation = async (deleteId) => {
     const response = await adminAxios({
         url: `/locationDelete?id=${deleteId}`,
-        method: "POST",
+        method: "DELETE",
     });
 
     return response;

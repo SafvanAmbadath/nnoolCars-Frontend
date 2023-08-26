@@ -10,6 +10,7 @@ import DateSet from "../COMPONENTS/Modal/DateSet";
 import { getAreas, getDate } from "../API/SERVICES/Location";
 import { getLandingLocations } from "../API/SERVICES/Location";
 import "react-datetime/css/react-datetime.css";
+import { setLogout } from "../REDUX-TOOLKIT/SLICE/userReducer";
 
 import React from "react";
 import logo from "../COMPONENTS/images/logo5.png";
@@ -33,6 +34,10 @@ function LandingScreen() {
     const [state, setState] = useState(false);
     const [locations, setLocations] = useState([]);
     const reduxstate = useSelector((state) => state.userSlice);
+    const [showDropdown, setShowDropdown] = useState(false);
+    const dropdownRef = useRef(null);
+
+   
 
     useEffect(() => {
         setLoader(true);
@@ -60,6 +65,36 @@ function LandingScreen() {
             }
         });
     }, [ city, ]);
+
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setShowDropdown(false);
+            }
+        };
+
+        window.addEventListener('click', handleOutsideClick);
+
+        return () => {
+            window.removeEventListener('click', handleOutsideClick);
+        };
+    }, []);
+
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
+    const userLogout = () => {
+        dispatch(
+          setLogout({
+            id: null,
+            name: null,
+            token: null,
+            email: null,
+           
+          })
+        );
+        navigate("/");
+      };
 
     const placeData = (location) => {
         dispatch(
@@ -95,21 +130,33 @@ function LandingScreen() {
                             </div>
                             <div className="w-full flex justify-between">
                                 <div className="flex mt-3 justify-between">
-                                    <h1 className="text-lg  ml-10 font-semibold text-white">Home</h1>
-                                    <h1 className="text-lg ml-10 font-semibold text-white">About</h1>
+                                    <h1 className="text-lg  ml-10 font-semibold text-white cursor-pointer">Home</h1>
+                                    <h1 className="text-lg ml-10 font-semibold text-white cursor-pointer">About</h1>
 
-                                    <h1 className="text-lg ml-10  font-semibold text-white">Contact</h1>
-                                    <h1 className="text-lg ml-10 font-semibold text-white">Blog</h1>
+                                    <h1 className="text-lg ml-10  font-semibold text-white cursor-pointer">Contact</h1>
+                                    <h1 className="text-lg ml-10 font-semibold text-white cursor-pointer">Blog</h1>
+                                    <h1 className="text-lg ml-10 font-semibold  text-white underline cursor-pointer" onClick={()=>{
+                                        navigate("/rent")
+                                    }}>Become a Host</h1>
                                 </div>
-                                <div className="flex p-4">
-                                    <Link
-                                        className="bg-yellow-500 p-2 text-black font-semibold rounded-md ml-4 -mt-2 "
-                                        to="/login"
-                                    >{name?name:"Login / SignUp"}
-                                      
-                                    </Link>
-                                    {/* <Link className='bg-green-500 p-2 text-white rounded-md ml-4 -mt-2 'to="/login" >SignUp</Link> */}
-                                </div>
+                                <div className="flex p-4 relative">
+            <button
+                className="bg-yellow-500 p-2 text-black font-semibold rounded-md ml-4 -mt-2"
+                onClick={name ?toggleDropdown:navigate("/login")}
+            >
+                {name ? name : "Login / SignUp"}
+            </button>
+            {showDropdown && name && (
+                <div className="ml-2 mt-1">
+                    <div className="bg-white absolute right-0 mt-2 rounded-md shadow-md border border-gray-300">
+                        
+                        <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left" onClick={userLogout}>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
                             </div>
                         </div>
                     </div>
