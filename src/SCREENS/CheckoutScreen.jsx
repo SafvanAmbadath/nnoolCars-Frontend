@@ -22,7 +22,7 @@ function CheckoutScreen() {
   const [netBank, setNetBank] = useState(false);
 
   const [creditCard, setCreditCard] = useState(false);
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
   const { state } = useLocation();
   const { id, token, endDate, date, time } = useSelector(
     (state) => state.userSlice
@@ -45,16 +45,21 @@ function CheckoutScreen() {
     };
     console.log("before booking")
     
-    const res = await postCarBook(data);
-    console.log(res);
+     await postCarBook(data).then((res)=>{
+       console.log(res);
+       console.log("helohi");
+       if(res.status === 202) {
+        console.log("booked done");
+        message.success("Car booked successfully")
+        navigate("/verifyOrder");
+      } else {
+        message.error(res.data.message);
+      }
+
+    })
    
 
-    if (res.status === 202) {
-      message.success("Car booked successfully")
-      navigate("/verifyOrder");
-    } else {
-      setMessage(res.data.message);
-    }
+    
   }catch(err){}
   };
 
